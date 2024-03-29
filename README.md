@@ -8,4 +8,5 @@ Kelas  : TI_1H
 
 NIM    : 2341720032
 
+Absen  : 07
 
