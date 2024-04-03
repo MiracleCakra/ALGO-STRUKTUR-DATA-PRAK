@@ -172,13 +172,13 @@ Output data keseluruhan Buku
 
 Output Pencarian Data Buku
 
-<img src = "PencarianBuku1.png">
+<img src = "pencarianBuku1.png">
 
 Output Pencarian data Buku
 
 a. data Buku ditemukan
 
-<img src = "PencarianBuku2.png">
+<img src = "pencarianBuku2.png">
 
 b. Data Buku tidak ditemukan
 
@@ -198,13 +198,17 @@ dapat berjalan? Apakah hasil yang dikeluarkan benar? Tunjukkan hasil screenshoot
     Jawab:
     program masih bisa berjalan dan outputnya tetap sesuai. dikarenakan proses seqeuential search tidak memerlukan data yang terurut.
 
-    <img src = "soal2.1.png">
-    <img src = "soal2.2.png">
+<img src = "soal2.1.png">
+
+<img src = "soal2.2.png">
+
+
 
 3. Buat method baru dengan nama FindBuku menggunakan konsep sequential search dengan tipe method dari FindBuku adalah BukuNoAbsen. Sehingga Anda bisa memanggil method tersebut pada class BukuMain seperti gambar berikut:
 <img src = "soalpercobaan1.png">
 
 Method pada Pencarian Buku
+
 ```java
 public Buku07 FindBuku(int cari) {
             Buku07 buku = null;
@@ -562,7 +566,7 @@ public class MergeSortMain07 {
 
 Output pada kode program
 
-<img src = "outputMerge.png">
+<img src = "OutputMerge.png">
 
 ### 6.5.Latihan Praktikum
 
