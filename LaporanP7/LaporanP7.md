@@ -413,7 +413,7 @@ Output pada kode program
 
 3.Jika Kode Buku yang dimasukkan dari Kode Buku terbesar ke terkecil (missal : 20215, 20214, 20212, 20211, 20210) dan elemen yang dicari adalah 20210. Bagaimana hasil dari binary search? Apakah sesuai? Jika tidak sesuai maka ubahlah kode program binary seach agar hasilnya sesuai! 
 
-    Jawab: Tidak sesuai
+Jawab: Tidak sesuai
 
 <img src = "soalperco2.1.1.png">
     
