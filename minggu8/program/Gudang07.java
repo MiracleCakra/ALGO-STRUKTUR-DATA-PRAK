@@ -1,5 +1,7 @@
 package minggu8.program;
 
+import java.util.Scanner;
+
 public class Gudang07 {
     
     Barang07[] tumpukan;
@@ -73,6 +75,64 @@ public class Gudang07 {
             System.out.println("Tumpukan barang kosong");
         }
     }
+
+    /// baru
+    public Barang07 lihatBarangTerbawah(){
+        if (!cekKosong()) {
+            Barang07 barangTerbawah = tumpukan[0];
+            System.out.println("Barang terbawah: " + barangTerbawah.nama);
+            return barangTerbawah;
+        } else {
+            System.out.println("Tumpukan barang kosong.");
+            return null;
+        }
+    }
+
+    public void cariBarang(Scanner scanner) {
+    System.out.println("Pilih metode pencarian:");
+    System.out.println("1. Berdasarkan kode barang");
+    System.out.println("2. Berdasarkan nama barang");
+    System.out.print("Masukkan pilihan: ");
+    int pilihan = scanner.nextInt();
+    scanner.nextLine();
+
+    switch (pilihan) {
+        case 1:
+            System.out.print("Masukkan kode barang: ");
+            int kodeCari = scanner.nextInt();
+            scanner.nextLine();
+            boolean ditemukanKode = false;
+            for (int i = 0; i <= top; i++) {
+                if (tumpukan[i].kode == kodeCari) {
+                    System.out.println("Barang ditemukan: " + tumpukan[i].nama + " (Kode: " + tumpukan[i].kode + ")");
+                    ditemukanKode = true;
+                    break;
+                }
+            }
+            if (!ditemukanKode) {
+                System.out.println("Barang dengan kode " + kodeCari + " tidak ditemukan.");
+            }
+            break;
+        case 2:
+            System.out.print("Masukkan nama barang: ");
+            String namaCari = scanner.nextLine();
+            boolean ditemukanNama = false;
+            for (int i = 0; i <= top; i++) {
+                if (tumpukan[i].nama.equalsIgnoreCase(namaCari)) {
+                    System.out.println("Barang ditemukan: " + tumpukan[i].nama + " (Kode: " + tumpukan[i].kode + ")");
+                    ditemukanNama = true;
+                    break;
+                }
+            }
+            if (!ditemukanNama) {
+                System.out.println("Barang dengan nama " + namaCari + " tidak ditemukan.");
+            }
+            break;
+        default:
+            System.out.println("Pilihan tidak valid.");
+            break;
+    }
+}
 
     public String konversiDesimalkeBiner(int kode) {
         StackKonversi07 stack = new StackKonversi07();

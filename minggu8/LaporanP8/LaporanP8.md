@@ -617,6 +617,8 @@ Output pada kode program
 
 Jawab: Dalam kasus tertentu, seperti ketika operator %, /, dan _ mengembalikan nilai 2, menunjukkan bahwa operator tersebut memiliki prioritas yang setara dalam ekspresi matematika, yang dapat diartikan bahwa operator %, /, dan _ memiliki prioritas yang sama, tetapi di bawah operator ^, yang memiliki prioritas yang lebih tinggi, yang mengembalikan nilai 4.
 
+
+
 2. Jelaskan alur kerja method konversi!
 
 Jawab: Hasil konversi dari ekspresi infix ke postfix pertama-tama disimpan melalui string kosong P. Setiap karakter dalam string Q kemudian diiterasi. Jika karakter tersebut adalah operand, maka karakter tersebut dimasukkan ke string P. Jika karakter tersebut adalah "(", maka tanda kurung tersebut dimasukkan ke dalam stack. Jika karakter tersebut adalah "(", maka tanda kurung tersebut dimasukkan ke dalam stack. Jika karakter tersebut adalah "(", maka dilakukan pengosongan stack sampai menemukan "(". Setiap karakter yang dikeluarkan dari stack dimasukkan ke dalam string P. Jika karakter tersebut adalah operator, Operator saat ini dimasukkan ke dalam stack setelah itu. Hasil konversi disimpan setelah iterasi selesai. dan hasil konversi dikembalikan
@@ -637,5 +639,165 @@ Perhatikan dan gunakan kembali kode program pada Percobaan
 • Method lihatBarangTerbawah digunakan untuk mengecek barang pada tumpukan terbawah
 
 • Method cariBarang digunakan untuk mencari ada atau tidaknya barang berdasarkan kode barangnya atau nama barangnya
+
+Jawab:
+
+Class pada Gudang07
+
+```java
+public Barang07 lihatBarangTerbawah(){
+        if (!cekKosong()) {
+            Barang07 barangTerbawah = tumpukan[0];
+            System.out.println("Barang terbawah: " + barangTerbawah.nama);
+            return barangTerbawah;
+        } else {
+            System.out.println("Tumpukan barang kosong.");
+            return null;
+        }
+    }
+
+    public void cariBarang(Scanner scanner) {
+    System.out.println("Pilih metode pencarian:");
+    System.out.println("1. Berdasarkan kode barang");
+    System.out.println("2. Berdasarkan nama barang");
+    System.out.print("Masukkan pilihan: ");
+    int pilihan = scanner.nextInt();
+    scanner.nextLine();
+
+    switch (pilihan) {
+        case 1:
+            System.out.print("Masukkan kode barang: ");
+            int kodeCari = scanner.nextInt();
+            scanner.nextLine();
+            boolean ditemukanKode = false;
+            for (int i = 0; i <= top; i++) {
+                if (tumpukan[i].kode == kodeCari) {
+                    System.out.println("Barang ditemukan: " + tumpukan[i].nama + " (Kode: " + tumpukan[i].kode + ")");
+                    ditemukanKode = true;
+                    break;
+                }
+            }
+            if (!ditemukanKode) {
+                System.out.println("Barang dengan kode " + kodeCari + " tidak ditemukan.");
+            }
+            break;
+        case 2:
+            System.out.print("Masukkan nama barang: ");
+            String namaCari = scanner.nextLine();
+            boolean ditemukanNama = false;
+            for (int i = 0; i <= top; i++) {
+                if (tumpukan[i].nama.equalsIgnoreCase(namaCari)) {
+                    System.out.println("Barang ditemukan: " + tumpukan[i].nama + " (Kode: " + tumpukan[i].kode + ")");
+                    ditemukanNama = true;
+                    break;
+                }
+            }
+            if (!ditemukanNama) {
+                System.out.println("Barang dengan nama " + namaCari + " tidak ditemukan.");
+            }
+            break;
+        default:
+            System.out.println("Pilihan tidak valid.");
+            break;
+    }
+}
+
+    public String konversiDesimalkeBiner(int kode) {
+        StackKonversi07 stack = new StackKonversi07();
+        while (kode != 0) {
+            int sisa = kode % 2;
+            stack.push(sisa);
+            kode = kode / 2;
+        }
+        String biner = new String();
+        while (!stack.isEmpty()) {
+            biner += stack.pop();
+        }
+        return biner;
+    }
+```
+
+Main pada Utama07
+
+```java
+package minggu8.program;
+
+import java.util.Scanner;
+
+public class Utama07 {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Masukkan kapasitas gudang: ");
+        int kapasitas = scanner.nextInt();
+        scanner.nextLine();
+
+        Gudang07 gudang = new Gudang07(kapasitas);
+
+        while (true) {
+            System.out.println("\nMenu");
+            System.out.println("1. Tambah barang");
+            System.out.println("2. Ambil barang");
+            System.out.println("3. Tampilkan tumpukan barang");
+            System.out.println("4. Tampilkan barang teratas");
+            System.out.println("5. Tampilkan barang terbawah");
+            System.out.println("6. Cari barang");
+            System.out.println("7. Keluar");
+            System.out.print("Pilih operasi: ");
+            int pilihan = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (pilihan) {
+                case 1:
+                    System.out.print("Masukkan kode barang: ");
+                    int kode = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Masukkan nama barang: ");
+                    String nama = scanner.nextLine();
+                    System.out.print("Masukkan nama kategori: ");
+                    String kategori = scanner.nextLine();
+                    Barang07 barangBaru = new Barang07(kode, nama, kategori);
+                    gudang.tambahBarang(barangBaru);
+                    break;
+
+                case 2:
+                    gudang.ambilBarang();
+                    break;
+
+                case 3:
+                    gudang.tampilkanBarang();
+                    break;
+
+                case 4:
+                    gudang.lihatBarangTeratas();
+                    break;
+                
+                case 5:
+                    gudang.lihatBarangTerbawah();
+                    break;
+
+                case 6:
+                    gudang.cariBarang(scanner);
+                    break;
+                case 7:
+                    System.exit(0);
+                    break;
+
+                default:
+                    System.out.println("Pilihan tidak valid. Silahkan coba lagi");
+            }
+        }
+    }
+
+}
+```
+
+Output pada kode program
+
+<img src = "latprak1.png">
+<img src = "latprak1.2.png">
+<img src = "latprak1.3.png">
+
 
 
