@@ -9,7 +9,8 @@ public static void menu() {
         System.out.println("1. Antrian baru");
         System.out.println("2. Antrian keluar");
         System.out.println("3. Cek antrian terdepan");
-        System.out.println("4. Cek semua atrian");
+        System.out.println("4. Cek semua antrian");
+        System.out.println("5. Cek antrian belakang");
         System.out.println("----------------------------------");
     }
 
@@ -56,6 +57,12 @@ public static void menu() {
                     break;
                 case 4:
                     Q.print();
+                    break;
+                case 5:
+                    Q.peekRear();
+                    break;
+                case 6:
+                    System.exit(1);
                     break;
                 default:
                     break;
