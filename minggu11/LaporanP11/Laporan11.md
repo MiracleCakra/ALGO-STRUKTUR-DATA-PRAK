@@ -1,4 +1,4 @@
-# JOBSHEET X QUEUE
+# JOBSHEET XI LINKED LIST
 
 Nama    : Cakra Wangsa M.A.W
 
