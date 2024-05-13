@@ -169,6 +169,7 @@ public static void main(String[] args) throws Exception {
 
 ### 12.2.2 Verifikasi Hasil Percobaan
 Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
+
 ![alt text](image.png)
 
 Output pada kode program
@@ -196,7 +197,9 @@ Node newNode = new Node(null, item, head);
 Node newNode = new Node(current, item, null);
 
 7. Pada method add(), terdapat potongan kode program sebagai berikut:
+
 ![alt text](image-2.png)
+
 jelaskan maksud dari bagian yang ditandai dengan kotak kuning.
 
 ### 12.3 Kegiatan Praktikum 2
@@ -428,6 +431,7 @@ public static void main(String[] args) throws Exception {
 ### 12.3.2 Verifikasi Hasil Percobaan
 
 Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
+
 ![alt text](image-3.png)
 
 ##### Output pada kode program
@@ -445,8 +449,10 @@ head.prev = null;
 3. Jelaskan alasan potongan kode program di bawah ini tidak cocok untuk perintah remove!
 
     ![alt text](image-4.png)
+
 4. Jelaskan fungsi kode program berikut ini pada fungsi remove!
-![alt text](image-5.png)
+
+    ![alt text](image-5.png)
 
 
 ### 12.4 Kegiatan Praktikum 3
@@ -729,6 +735,7 @@ public static void main(String[] args) throws Exception {
 
 ### 12.4.2 Verifikasi Hasil Percobaan
 Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
+
 ![alt text](image-6.png)
 
 Output pada kode program
@@ -743,7 +750,9 @@ Output pada kode program
 3. Jelaskan perbedaan karakteristik fungsi Add pada Double Linked Lists dan Single Linked Lists!
 
 4. Jelaskan perbedaan logika dari kedua kode program di bawah ini!
-![alt text](image-7.png) ![alt text](image-8.png)
+
+![alt text](image-7.png) 
+![alt text](image-8.png)
 
 
 ### 12.5 Tugas Praktikum
@@ -753,7 +762,8 @@ Waktu : 100 Menit
 1. Buat program antrian vaksinasi menggunakan queue berbasis double linked list sesuai ilustrasi dan menu di bawah ini! (counter jumlah antrian tersisa di menu cetak(3) dan data orang yang telah divaksinasi di menu Hapus Data(2) harus ada)
 Contoh Ilustrasi Program
 Menu Awal dan Penambahan Data
-![alt text](image-9.png) ![alt text](image-10.png)
+![alt text](image-9.png) 
+![alt text](image-10.png)
 
 
 Cetak Data (Komponen di area merah harus ada)
@@ -761,12 +771,16 @@ Cetak Data (Komponen di area merah harus ada)
 ![alt text](image-12.png)
 
 Hapus Data (Komponen di area merah harus ada)
+
 ![alt text](image-13.png)
 
 2.Buatlah program daftar film yang terdiri dari id, judul dan rating menggunakan double linked lists, bentuk program memiliki fitur pencarian melalui ID Film dan pengurutan Rating secara descending. Class Film wajib diimplementasikan dalam soal ini.
 ##### Contoh Ilustrasi Program
 Menu Awal dan Penambahan Data
-![alt text](image-14.png) ![alt text](image-15.png) ![alt text](image-16.png) ![alt text](image-17.png)
+![alt text](image-14.png) 
+![alt text](image-15.png) 
+![alt text](image-16.png) 
+![alt text](image-17.png)
 
 Cetak Data
 
