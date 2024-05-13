@@ -739,6 +739,7 @@ Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
 ![alt text](image-6.png)
 
 Output pada kode program
+
 <img src = "perco3.png">
 
 ### 12.4.3 Pertanyaan Percobaan
@@ -751,7 +752,8 @@ Output pada kode program
 
 4. Jelaskan perbedaan logika dari kedua kode program di bawah ini!
 
-![alt text](image-7.png) 
+![alt text](image-7.png)
+
 ![alt text](image-8.png)
 
 
@@ -762,7 +764,9 @@ Waktu : 100 Menit
 1. Buat program antrian vaksinasi menggunakan queue berbasis double linked list sesuai ilustrasi dan menu di bawah ini! (counter jumlah antrian tersisa di menu cetak(3) dan data orang yang telah divaksinasi di menu Hapus Data(2) harus ada)
 Contoh Ilustrasi Program
 Menu Awal dan Penambahan Data
+
 ![alt text](image-9.png) 
+
 ![alt text](image-10.png)
 
 
@@ -777,9 +781,13 @@ Hapus Data (Komponen di area merah harus ada)
 2.Buatlah program daftar film yang terdiri dari id, judul dan rating menggunakan double linked lists, bentuk program memiliki fitur pencarian melalui ID Film dan pengurutan Rating secara descending. Class Film wajib diimplementasikan dalam soal ini.
 ##### Contoh Ilustrasi Program
 Menu Awal dan Penambahan Data
+
 ![alt text](image-14.png) 
+
 ![alt text](image-15.png) 
+
 ![alt text](image-16.png) 
+
 ![alt text](image-17.png)
 
 Cetak Data
