@@ -450,3 +450,250 @@ Cocokkan hasil compile kode program anda dengan gambar berikut ini.
 
     Jawab: 
     Dalam metode remove(int key), kode else if (temp.next.data == key) berfungsi untuk menemukan node yang memiliki nilai yang sama dengan key setelah node saat ini (temp). Setelah node yang sesuai ditemukan, operasi ini menghapus node tersebut dari daftar yang terhubung dengan mengatur next dari node saat ini (temp) ke node setelah node yang akan dihapus (temp.next.next).
+
+
+### 3. Tugas
+Waktu pengerjaan : 50 menit
+
+1. Implementasikan ilustrasi Linked List Berikut. Gunakan 4 macam penambahan data yang telah dipelajari sebelumnya untuk menginputkan data.
+![alt text](image-4.png)
+
+    Jawab: terdapat 3 class yaitu node, SingleLinkList, mahasiswaMain. Berikut kode program dari masing-masing class.
+
+    Class pada kode program (node)
+
+```java
+    public class node {
+    int nim;
+    String nama;
+    node next;
+
+    node (int nim, String nama, node berikutnya){
+        this.nim = nim;
+        this.nama = nama;
+        this.next = berikutnya;
+        }
+    }
+```
+
+```java
+public class mahasiswaMain {
+    public static void main(String[] args) {
+        SingleLinkList sll = new SingleLinkList();
+
+        sll.addFirst(111, "Anton");
+        sll.addLast(112, "Prita");
+        sll.addLast(113, "Yusuf");
+        sll.addLast(114, "Doni");
+        sll.addLast(115, "Sari");
+        sll.print();
+    }
+}
+```
+
+
+```java
+public class SingleLinkList {
+    node head, tail;
+
+    boolean isEmpty(){
+        return head == null;
+    } 
+
+    void print(){
+        if (!isEmpty()) {
+            node tmp = head;
+            int count = 1; 
+            while (tmp != null) {
+                System.out.println("mhs" + count + " \nnim : " + tmp.nim + " nama : " + tmp.nama);
+                tmp = tmp.next;
+                count++; 
+            }
+        } else {
+            System.out.println("Linked List Kosong");
+        }
+    }
+
+    void addFirst(int nim, String nama){
+        node ndInput = new node(nim, nama);
+        if (isEmpty()) {
+            head = ndInput;
+            tail = ndInput;
+        } else {
+            head = ndInput;
+        }
+    }
+
+    void addLast(int nim, String nama) {
+        node ndInput = new node(nim, nama);
+        if (isEmpty()) {
+            head = ndInput;
+            tail = ndInput;
+        } else {
+            tail.next = ndInput;
+            tail = ndInput;
+        }
+    }
+
+    void insertAfter(int key, int nim, String nama) {
+        node ndInput = new node(nim, nama);
+        node temp = head;
+        while (temp != null) {
+            if (temp.nim == key) {
+                ndInput.next = temp.next;
+                temp.next = ndInput;
+                if (ndInput.next == null) {
+                    tail = ndInput;
+                }
+                break;
+            }
+            temp = temp.next;
+        }
+    }
+
+    void insertAt(int index, int nim, String nama) {
+        if (index < 0) {
+            System.out.println("index harus >= 0");
+            return;
+        }
+        if (index == 0) {
+            addFirst(nim, nama);
+            return;
+        }
+        node temp = head;
+        for (int i = 1; i < index && temp.next != null; i++) {
+            temp = temp.next;
+        }
+        node ndInput = new node(nim, nama);
+        temp.next = ndInput;
+        if (ndInput.next == null) {
+            tail = ndInput;
+        }
+    }
+}
+```
+
+Output pada kode program
+
+<img src = "tugas1.png">
+
+
+2.Buatlah implementasi program antrian layanan unit kemahasiswaan sesuai dengan kondisi yang ditunjukkan pada soal nomor 1! Ketentuan
+
+a. Implementasi antrian menggunakan Queue berbasis Linked List!
+b. Program merupakan proyek baru, bukan modifikasi dari soal nomor 1!
+
+Class pada kode program node
+
+```java
+public class node {
+    int nim;
+    String nama;
+    node next;
+
+    public node(int nim, String nama) {
+        this.nim = nim;
+        this.nama = nama;
+        this.next = null;
+    }
+}
+
+```
+
+Class pada kode program
+
+```java
+public class linkedListQueue {
+    node head, tail;
+    
+    public linkedListQueue(){
+        this.head = null;
+        this.tail = null;
+    }
+
+    boolean isEmpty(){
+        return head == null;
+    }
+
+    public void enqueue(int nim, String nama){
+    node newNode = new node(nim, nama);
+    if (tail == null) {
+            head = tail = newNode;
+            return;
+    }
+    tail.next = newNode;
+    tail = newNode;
+    }
+
+    public void dequeue(){
+        if (isEmpty()) {
+            System.out.println("Linked list masih kosong, " + "tidak dapat dihapus");
+        } else {
+            System.out.println("Dequeue: " + head.nim + " " + head.nama);
+            head = head.next;
+            if (head == null) {
+                tail = null; 
+            }
+        }
+    }
+
+    public void print(){
+        if (!isEmpty()) {
+            node tmp = head;
+            System.out.print("Isi Linked List: ");
+            while (tmp != null) {
+                System.out.print(tmp.nim + " " + tmp.nama + "\t");
+                tmp = tmp.next;
+            }
+            System.out.println(" ");
+        } else {
+            System.out.println("Linked List kosong");
+        }
+    }
+}
+```
+
+Main pada kode program
+```java
+package minggu11.tugas2;
+
+public class Main2 {
+    public static void main(String[] args) {
+    LinkedListQueue queue = new LinkedListQueue();
+
+        // Enqueue beberapa mahasiswa
+        queue.enqueue(111, "Anton");
+        queue.enqueue(112, "Prita");
+        queue.enqueue(113, "Yusuf");
+        queue.enqueue(114, "Doni");
+        queue.enqueue(115, "Sari");
+
+        // Menampilkan antrian mahasiswa
+        System.out.println("Queue:");
+        queue.print();
+
+        // Dequeue satu mahasiswa
+        queue.dequeue();
+
+        // Menampilkan antrian setelah satu mahasiswa dikeluarkan
+        System.out.println("Queue setelah dequeue:");
+        queue.print();
+    }
+
+}
+```
+
+Output pada kode program
+
+<img src = "tugas2.png">
+
+
+
+
+
+
+
+
+
+
+
