@@ -222,7 +222,7 @@ Node newNode = new Node(current, item, null);
 
 7. Pada method add(), terdapat potongan kode program sebagai berikut:
 
-![alt text](image-2.png)
+    ![alt text](image-2.png)
 
     jawab: Jika pada current.prev bernilai null, maka berarti current adalah node pertama dalam daftar yang terhubung, dan ketika current.prev bernilai null, kita ingin menambahkan node baru sebagai node pertama dalam daftar yang terhubung. Untuk melakukan ini, kita membuat objek baru dari class Node dengan parameter konstruktor null, item, dan current.
 
