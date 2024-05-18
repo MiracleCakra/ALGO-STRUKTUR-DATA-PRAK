@@ -180,25 +180,51 @@ Output pada kode program
 
 1. Jelaskan perbedaan antara single linked list dengan double linked lists!
 
-    Jawab: 
+    Jawab:
+    
+    Single Linked List:
+    - Setiap node (elemen) dalam Single Linked List hanya memiliki satu pointer yang menunjuk ke node berikutnya dalam urutan tersebut.
+    - Untuk mengakses suatu node, Anda harus memulai dari node pertama (head) dan menelusuri satu per satu hingga mencapai node yang diinginkan.
+    - Tidak ada pointer yang menunjuk ke node sebelumnya, sehingga untuk mengakses node sebelumnya, Anda harus menelusuri kembali dari awal.
+    - Operasi seperti menambahkan atau menghapus node di akhir lebih mudah, tetapi untuk menambahkan atau menghapus di tengah-tengah membutuhkan waktu yang lebih lama karena harus menelusuri satu per satu dari awal.
+
+    Double Linked List:
+    - Setiap node dalam Double Linked List memiliki dua pointer, satu menunjuk ke node berikutnya dan satu lagi menunjuk ke node sebelumnya.
+    - Dengan adanya pointer ke node sebelumnya, operasi penambahan atau penghapusan node di tengah-tengah menjadi lebih mudah dan cepat karena Anda dapat mengakses node sebelum dan sesudahnya secara langsung.
+    - Untuk mengakses suatu node, Anda dapat memulai dari node pertama (head) atau node terakhir (tail), bergantung pada kebutuhan.
+    - Membutuhkan lebih banyak memori karena setiap node memiliki dua pointer.
+
+    Secara umum, Single Linked List lebih hemat memori, tetapi Double Linked List lebih efisien dalam operasi penambahan atau penghapusan di tengah-tengah karena kemudahan akses ke node sebelum dan sesudahnya. 
 
 2. Perhatikan class Node, di dalamnya terdapat atribut next dan prev. Untuk apakah atribut tersebut?
+
+    Jawab: pada class Node terdapat atribut next dan prev berfungsi untuk memberitahu bahwa class tersebut merupakan bagian dari struktur data linked list dengan artian pada node sebelumnya yaitu (prev) dan pada node selanjutnya yaitu next.
 
 3. Perhatikan konstruktor pada class DoubleLinkedLists. Apa kegunaan inisialisasi atribut head dan size seperti pada gambar berikut ini?
 
     ![alt text](image-1.png)
 
+    Jawab: kegunaan pada inisialisasi atribut head pada class DoubleLinkedList adalah untuk menginisialisasi atribut pada head menjadi null dan size menjadi 0 dan memiliki beberapa kegunaan. Yaitu inisialisasi linked list kosong, memudahkan untuk menambahkan pada node pertama, dan untuk menghindari kesalahan pada referensi.
+
 4. Pada method addFirst(), kenapa dalam pembuatan object dari konstruktor class Node prev dianggap sama dengan null?
 Node newNode = new Node(null, item, head);
 
+    Jawab: Pada pembuatan objek dari sebuah konstruktor class Node, Prev dianggap sama dengan null yang dimana dipanggil pada newNode, dikarenakan kita ingin membuat node baru sebagai node pertama dalam linked list
+
 5. Perhatikan pada method addFirst(). Apakah arti statement head.prev = newNode ?
+
+    Jawab: Dengan menggunakan statement head.prev = newNode, kita dapat mengubah atribut prev node head menjadi referensi ke node baru yang baru dibuat.
 
 6. Perhatikan isi method addLast(), apa arti dari pembuatan object Node dengan mengisikan parameter prev dengan current, dan next dengan null?
 Node newNode = new Node(current, item, null);
 
+    Jawab: Kita menggunakan daftar terhubung, yang disimpan dalam variabel saat ini, untuk menghubungkan node baru ke node terakhir. Dan juga mengatur atribut next menjadi null untuk menunjukkan bahwa node baru ini akan menjadi node terakhir.
+
 7. Pada method add(), terdapat potongan kode program sebagai berikut:
 
 ![alt text](image-2.png)
+
+    jawab: Jika pada current.prev bernilai null, maka berarti current adalah node pertama dalam daftar yang terhubung, dan ketika current.prev bernilai null, kita ingin menambahkan node baru sebagai node pertama dalam daftar yang terhubung. Untuk melakukan ini, kita membuat objek baru dari class Node dengan parameter konstruktor null, item, dan current.
 
 jelaskan maksud dari bagian yang ditandai dengan kotak kuning.
 
@@ -444,16 +470,35 @@ Verifikasi hasil kompilasi kode program Anda dengan gambar berikut ini.
 head = head.next;
 head.prev = null;
 
+    Jawab: pada statement head = head.next; dan head.prev = null;, yang berfungsi untuk menghapus node pertama pada linked list. dan pada method removeFirst(), berfungsi untuk memeriksa apakah linked list masih kosong atau hanya memiliki satu node. Apabila linked list masih kosong, maka akan melempar exception. Dan apabila linked list hanya memiliki satu node, maka akan memanggil method removeLast() untuk menghapus node tersebut.
+
 2. Bagaimana cara mendeteksi posisi data ada pada bagian akhir pada method removeLast()?
+
+    jawab: 
+
+    1. Membuat variabel penunjuk (pointer) yang mengarah ke node terakhir. 
+    yang dimana dapat membuat variabel penunjuk seperti lastNode yang akan menunjuk ke node terakhir dalam linked list. Pada awalnya, lastNode akan menunjuk ke null (atau None dalam Python) jika linked list masih kosong.
+
+    2. Menelusuri linked list hingga menemukan node terakhir
+    dan akan menelusuri linked list dari node head (kepala) hingga menemukan node yang tidak memiliki node selanjutnya (next pointer bernilai null atau None). Maka Node ini akan menjadi node terakhir dalam linked list.
+
+    3. Memeriksa apakah lastNode tidak null atau None
+    Jika lastNode tidak null atau None, artinya linked list tidak kosong, dan bisa dapat melanjutkan proses penghapusan node terakhir.
+
+    4. Menghapus node terakhir
+    Untuk menghapus node terakhir, kita perlu mengubah pointer next dari node sebelumnya menjadi null atau None. Jika linked list hanya memiliki satu node, maka kita mengatur node head menjadi null atau None.
 
 3. Jelaskan alasan potongan kode program di bawah ini tidak cocok untuk perintah remove!
 
     ![alt text](image-4.png)
 
+    Jawab: Dalam potongan kode ini, head.next berguna untuk menghubungkan node setelah node yang akan dihapus; namun, tmp.next tidak diatur menjadi null, sehingga masih ada referensi pada node yang akan dihapus dari daftar yang terhubung. Selain itu, sebelum menghapus node, pastikan bahwa atribut prev dari node setelah node yang dihapus juga diperbarui dengan benar.
+
 4. Jelaskan fungsi kode program berikut ini pada fungsi remove!
 
     ![alt text](image-5.png)
 
+    Jawab: fungsi kode program tersebut pada fungsi remove adalah berguna untuk menghapus node current pada linked list.
 
 ### 12.4 Kegiatan Praktikum 3
 
@@ -746,16 +791,59 @@ Output pada kode program
 
 1. Jelaskan method size() pada class DoubleLinkedLists!
 
+    Jawab: method size() pada class DoubleLinkedLists berfungsi untuk pengembalian jumlah elemen / size yang ada pada linkedlists
+
 2. Jelaskan cara mengatur indeks pada double linked lists supaya dapat dimulai dari indeks ke- 1!
+
+    Jawab: cara mengatur indeks supaya mulai dari 1 adalah melakukan perubahan pada method get, yang dimana ada perubahan pada kode program 
+
+    ```java
+    public int get(int index) throws Exception {
+    if (isEmpty() || index > size || index < 1) {
+        throw new Exception("Nilai indeks diluar batas");
+    }
+    Node tmp = head;
+    for (int i = 1; i <= index; i++) {
+        tmp = tmp.next;
+    }
+    return tmp.data;
+    }
+    ``` 
 
 3. Jelaskan perbedaan karakteristik fungsi Add pada Double Linked Lists dan Single Linked Lists!
 
+    Jawab: 
+
+Single Linked List:
+1. Pada Single Linked List, setiap node hanya memiliki satu pointer yang menunjuk ke node berikutnya.
+
+2. pada saat menambahkan node baru di akhir daftar, diperlukan penelusuran dari node head hingga mencapai node terakhir. Karena tidak ada pointer yang menunjuk ke node sebelumnya, proses ini membutuhkan waktu O(n), di mana n adalah jumlah node dalam daftar.
+
+3. pada saat menambahkan node baru di awal daftar, cukup mengubah pointer `next` dari node baru agar menunjuk ke node head saat ini, dan mengubah node head menjadi node baru.
+
+Double Linked List:
+
+1. Pada Double Linked List, setiap node memiliki dua pointer, yaitu pointer yang menunjuk ke node sebelumnya dan pointer yang menunjuk ke node berikutnya.
+
+2. pada saat menambahkan node baru di akhir daftar, tidak diperlukan penelusuran dari node head. Dan cukup mengubah pointer `next` dari node terakhir agar menunjuk ke node baru, dan mengubah pointer `prev` dari node baru agar menunjuk ke node terakhir sebelumnya. Proses ini membutuhkan waktu O(1) karena akses langsung ke node terakhir.
+
+3. Pada saat menambahkan node baru di awal daftar, cukup mengubah pointer `next` dari node baru agar menunjuk ke node head saat ini, mengubah pointer `prev` dari node head saat ini agar menunjuk ke node baru, dan mengubah node head menjadi node baru.
+
+4. Pada Double Linked List, penambahan node baru di awal atau akhir daftar membutuhkan waktu O(1) karena adanya akses langsung ke node head dan node tail.
+
+
+
 4. Jelaskan perbedaan logika dari kedua kode program di bawah ini!
 
-![alt text](image-7.png)
+    ![alt text](image-7.png)
 
-![alt text](image-8.png)
+    ![alt text](image-8.png)
 
+    Jawab: 
+
+    a.  Kode program pertama memanfaatkan variabel size untuk memeriksa apakah struktur data Double Linked Lists dalam keadaan kosong atau tidak. Pemeriksaan dilakukan dengan memeriksa apakah nilai variabel size sama dengan 0, yang mengindikasikan bahwa Double Linked Lists tidak memiliki elemen di dalamnya, sehingga dikembalikan nilai true yang menandakan Double Linked Lists dalam keadaan kosong. Sebaliknya, jika nilai variabel size tidak sama dengan 0, maka dikembalikan nilai false yang mengindikasikan bahwa Double Linked Lists tidak dalam keadaan kosong dan memiliki setidaknya satu elemen di dalamnya.
+
+    b. Kode program kedua menggunakan variabel head untuk menentukan apakah struktur data Single Linked Lists dalam keadaan kosong atau tidak. Pemeriksaan dilakukan dengan mengevaluasi apakah nilai variabel head sama dengan null, yang menjadi indikator bahwa Single Linked Lists tidak memiliki elemen di dalamnya, sehingga dikembalikan nilai true yang menandakan Single Linked Lists dalam keadaan kosong. Namun, jika nilai variabel head tidak sama dengan null, maka dikembalikan nilai false yang mengindikasikan bahwa Single Linked Lists tidak dalam keadaan kosong dan memiliki setidaknya satu elemen di dalamnya.
 
 ### 12.5 Tugas Praktikum
 
