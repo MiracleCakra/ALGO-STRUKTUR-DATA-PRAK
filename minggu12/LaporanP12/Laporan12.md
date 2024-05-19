@@ -857,7 +857,6 @@ Menu Awal dan Penambahan Data
 
 ![alt text](image-10.png)
 
-
 Cetak Data (Komponen di area merah harus ada)
 
 ![alt text](image-12.png)
@@ -865,6 +864,141 @@ Cetak Data (Komponen di area merah harus ada)
 Hapus Data (Komponen di area merah harus ada)
 
 ![alt text](image-13.png)
+
+##### Class pada kode program
+
+```java
+package minggu12.tugasno1;
+
+public class Node07 {
+    String data;
+    Node07 next;
+    Node07 prev;
+    
+    Node07(String data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+```
+
+```java
+package minggu12.tugasno1;
+
+public class Queue {
+    
+    Node07 front, rear;
+
+    Queue() {
+        this.front = this.rear = null;
+    }
+
+    void enqueue(String data) {
+        Node07 newNode = new Node07(data);
+        if (rear == null) {
+            front = rear = newNode;
+        } else {
+            rear.next = newNode;
+            newNode.prev = rear;
+            rear = newNode;
+        }
+        System.out.println(data + " telah ditambahkan ke dalam antrian.");
+    }
+
+    void dequeue() {
+        if (front == null) {
+            System.out.println("Antrian kosong, tidak ada yang dapat dihapus.");
+            return;
+        }
+        System.out.println(front.data + " telah selesai divaksinasi.");
+        front = front.next;
+        if (front != null) {
+            front.prev = null;
+        } else {
+            rear = null;
+        }
+    }
+
+    void print() {
+        if (front == null) {
+            System.out.println("Antrian kosong.");
+            return;
+        }
+        Node07 temp = front;
+        int noAntrian = 1;
+        System.out.println("| No Antrian | Nama          |");
+        System.out.println("|------------|---------------|");
+        while (temp != null) {
+            System.out.printf("| %-10d | %-13s |\n", noAntrian++, temp.data);
+            temp = temp.next;
+        }
+        System.out.println("Tersisa " + (noAntrian - 1) + " antrian.");
+    }
+
+    boolean isEmpty() {
+        return front == null;
+    }
+}
+```
+
+##### Main pada kode program
+
+```java
+package minggu12.tugasno1;
+
+import java.util.Scanner;
+
+public class VaksinasiMain07 {
+    public static void main(String[] args) {
+        Queue queue = new Queue();
+        Scanner scanner = new Scanner(System.in);
+        int pilih;
+        String nama;
+        
+        do {
+            System.out.println("++++++++++++++++++++++++++++++");
+            System.out.println("PENGANTRI VAKSIN EKSTRAVAGANZA");
+            System.out.println("++++++++++++++++++++++++++++++");
+            System.out.println("\n1. Tambah data penerima vaksin");
+            System.out.println("2. Hapus data pengantri vaksin");
+            System.out.println("3. Daftar penerima vaksin");
+            System.out.println("4. Keluar");
+            System.out.println("++++++++++++++++++++++++++++++");
+            System.out.print("Pilihan: ");
+            pilih = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (pilih) {
+                case 1:
+                    System.out.println("-----------------------------");
+                    System.out.println("Masukkan Data Penerima Vaksin");
+                    System.out.println("-----------------------------");
+                    System.out.println("Nomor Antrian: ");
+                    scanner.nextLine();
+                    System.out.println("Nama Penerima: ");
+                    nama = scanner.nextLine();
+                    queue.enqueue(nama);
+                    break;
+                case 2:
+                    queue.dequeue();
+                    break;
+                case 3:
+                    queue.print();
+                    break;
+                case 4:
+                    System.out.println("Keluar dari program.");
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+            }
+        } while (pilih != 4);
+        scanner.close();
+    }
+}
+```
+
+##### Output pada kode program
 
 2.Buatlah program daftar film yang terdiri dari id, judul dan rating menggunakan double linked lists, bentuk program memiliki fitur pencarian melalui ID Film dan pengurutan Rating secara descending. Class Film wajib diimplementasikan dalam soal ini.
 ##### Contoh Ilustrasi Program
@@ -885,3 +1019,274 @@ Cetak Data
 Pencarian Data
 
 ![alt text](image-19.png)
+
+##### Class pada kode program
+
+```java
+package minggu12.tugasno2;
+
+class Film {
+int id;
+String judul;
+double rating;
+Film prev, next;
+
+    Film(int id, String judul, double rating) {
+        this.id = id;
+        this.judul = judul;
+        this.rating = rating;
+    }
+}
+```
+
+```java
+package minggu12.tugasno2;
+
+class DoubleLinkedList {
+ 
+    private Film head, tail;
+
+    public void tambahAwal(int id, String judul, double rating) {
+        Film newFilm = new Film(id, judul, rating);
+        if (head == null) {
+            head = tail = newFilm;
+        } else {
+            newFilm.next = head;
+            head.prev = newFilm;
+            head = newFilm;
+        }
+    }
+
+    public void tambahAkhir(int id, String judul, double rating) {
+        Film newFilm = new Film(id, judul, rating);
+        if (tail == null) {
+            head = tail = newFilm;
+        } else {
+            tail.next = newFilm;
+            newFilm.prev = tail;
+            tail = newFilm;
+        }
+    }
+
+    public void tambahPadaIndex(int index, int id, String judul, double rating) {
+        if (index <= 0) {
+            tambahAwal(id, judul, rating);
+            return;
+        }
+        
+        Film newFilm = new Film(id, judul, rating);
+        Film current = head;
+        for (int i = 0; i < index - 1; i++) {
+            if (current == null) {
+                break;
+            }
+            current = current.next;
+        }
+
+        if (current == null || current.next == null) {
+            tambahAkhir(id, judul, rating);
+        } else {
+            newFilm.next = current.next;
+            newFilm.prev = current;
+            current.next.prev = newFilm;
+            current.next = newFilm;
+        }
+    }
+
+    public void hapusPertama() {
+        if (head != null) {
+            if (head == tail) {
+                head = tail = null;
+            } else {
+                head = head.next;
+                head.prev = null;
+            }
+        }
+    }
+
+    public void hapusTerakhir() {
+        if (tail != null) {
+            if (head == tail) {
+                head = tail = null;
+            } else {
+                tail = tail.prev;
+                tail.next = null;
+            }
+        }
+    }
+
+    public void hapusPadaIndex(int index) {
+        if (index <= 0) {
+            hapusPertama();
+            return;
+        }
+
+        Film current = head;
+        for (int i = 0; i < index; i++) {
+            if (current == null) {
+                return;
+            }
+            current = current.next;
+        }
+
+        if (current == null || current.prev == null) {
+            hapusTerakhir();
+        } else {
+            current.prev.next = current.next;
+            if (current.next != null) {
+                current.next.prev = current.prev;
+            }
+        }
+    }
+
+    public void cetak() {
+        Film current = head;
+        while (current != null) {
+            System.out.println("ID: " + current.id + ", Judul: " + current.judul + ", Rating: " + current.rating);
+            current = current.next;
+        }
+    }
+
+    public Film cariID(int id) {
+        Film current = head;
+        while (current != null) {
+            if (current.id == id) {
+                return current;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
+    public void urutRatingDesc() {
+        if (head == null) return;
+        boolean swapped;
+        do {
+            swapped = false;
+            Film current = head;
+            while (current.next != null) {
+                if (current.rating < current.next.rating) {
+                    double tempRating = current.rating;
+                    current.rating = current.next.rating;
+                    current.next.rating = tempRating;
+
+                    int tempId = current.id;
+                    current.id = current.next.id;
+                    current.next.id = tempId;
+
+                    String tempJudul = current.judul;
+                    current.judul = current.next.judul;
+                    current.next.judul = tempJudul;
+
+                    swapped = true;
+                }
+                current = current.next;
+            }
+        } while (swapped);
+    }
+}
+```
+
+##### Main pada kode program
+
+```java
+package minggu12.tugasno2;
+
+import java.util.Scanner;
+
+public class Main07 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        DoubleLinkedList dll = new DoubleLinkedList();
+        int choice, id, index;
+        String judul;
+        double rating;
+
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1. Tambah Data Awal");
+            System.out.println("2. Tambah Data Akhir");
+            System.out.println("3. Tambah Data Index Tertentu");
+            System.out.println("4. Hapus Data Pertama");
+            System.out.println("5. Hapus Data Terakhir");
+            System.out.println("6. Hapus Data Tertentu");
+            System.out.println("7. Cetak");
+            System.out.println("8. Cari ID Film");
+            System.out.println("9. Urut Data Rating Film-DESC");
+            System.out.println("10. Keluar");
+            System.out.print("Masukkan pilihan Anda: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Masukkan ID: ");
+                    id = scanner.nextInt();
+                    scanner.nextLine(); // flush scanner
+                    System.out.print("Masukkan Judul: ");
+                    judul = scanner.nextLine();
+                    System.out.print("Masukkan Rating: ");
+                    rating = scanner.nextDouble();
+                    dll.tambahAwal(id, judul, rating);
+                    break;
+                case 2:
+                    System.out.print("Masukkan ID: ");
+                    id = scanner.nextInt();
+                    scanner.nextLine(); // flush scanner
+                    System.out.print("Masukkan Judul: ");
+                    judul = scanner.nextLine();
+                    System.out.print("Masukkan Rating: ");
+                    rating = scanner.nextDouble();
+                    dll.tambahAkhir(id, judul, rating);
+                    break;
+                case 3:
+                    System.out.print("Masukkan Index: ");
+                    index = scanner.nextInt();
+                    System.out.print("Masukkan ID: ");
+                    id = scanner.nextInt();
+                    scanner.nextLine(); // flush scanner
+                    System.out.print("Masukkan Judul: ");
+                    judul = scanner.nextLine();
+                    System.out.print("Masukkan Rating: ");
+                    rating = scanner.nextDouble();
+                    dll.tambahPadaIndex(index, id, judul, rating);
+                    break;
+                case 4:
+                    dll.hapusPertama();
+                    break;
+                case 5:
+                    dll.hapusTerakhir();
+                    break;
+                case 6:
+                    System.out.print("Masukkan Index untuk dihapus: ");
+                    index = scanner.nextInt();
+                    dll.hapusPadaIndex(index);
+                    break;
+                case 7:
+                    dll.cetak();
+                    break;
+                case 8:
+                    System.out.print("Masukkan ID Film yang dicari: ");
+                    id = scanner.nextInt();
+                    Film foundFilm = dll.cariID(id);
+                    if (foundFilm != null) {
+                        System.out.println("Film ditemukan: ID: " + foundFilm.id + ", Judul: " + foundFilm.judul + ", Rating: " + foundFilm.rating);
+                    } else {
+                        System.out.println("Film dengan ID tersebut tidak ditemukan.");
+                    }
+                    break;
+                case 9:
+                    dll.urutRatingDesc();
+                    break;
+                case 10:
+                    System.out.println("Keluar dari program.");
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid, coba lagi.");
+            }
+        } while (choice != 10);
+        scanner.close();
+    }
+}
+```
+
+##### Output pada kode program
