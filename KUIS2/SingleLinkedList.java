@@ -16,7 +16,8 @@ public class SingleLinkedList {
     void print(){
         if (!isEmpty()) {
             Node tmp = head;
-            System.out.println("Standings: ");
+            System.out.println("====================");
+            System.out.println("Last Standings: ");
             System.out.println("====================");
             System.out.printf("| %-4s | %-32s | %-7s | %-7s | %-7s | %-7s |\n", "Rank", "Tim", "Game", "Menang", "Kalah", "Poin");
             int i = 1;
@@ -65,34 +66,7 @@ public class SingleLinkedList {
             tail = temp.next;
         }
     }
-    void remove (){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Masukkan rank club yang ingin di hapus: ");
-        int rank = sc.nextInt();
-        if (isEmpty()) {
-            System.out.println("Linked list masih kosong, tidak dapat dihapus");
 
-        }else{
-            Node temp = head;
-            int i=1;
-            while (temp !=null) {
-                if (rank==1 && temp == head) {
-                    System.out.println("Club " + temp.data.namaCLub + " telah di hapus");
-                    removeFirst();
-                    break;
-                }else if (i+1==rank) {
-                    System.out.println("Club " + temp.next.data.namaCLub + " telah di hapus");
-                    temp.next = temp.next.next;
-                    if (temp.next == null) {
-                        tail = temp;
-                    }
-                    break;
-                }
-                temp = temp.next;
-                i++;
-            }
-        }
-    }
     public void search(String namaClub){
         Node temp = head;
         int i = 1;
