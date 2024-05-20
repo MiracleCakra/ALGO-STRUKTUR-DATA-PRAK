@@ -10,3 +10,6 @@ Node07 (int nilai, Node07 berikutnya) {
     next = berikutnya;
     }
 }
+
+
+
