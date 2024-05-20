@@ -1000,6 +1000,13 @@ public class VaksinasiMain07 {
 
 ##### Output pada kode program
 
+
+<img src = "tugas2.png">
+
+<img src = "tugas2.2.png">
+
+<img src = "tugas2.3.png">
+
 2.Buatlah program daftar film yang terdiri dari id, judul dan rating menggunakan double linked lists, bentuk program memiliki fitur pencarian melalui ID Film dan pengurutan Rating secara descending. Class Film wajib diimplementasikan dalam soal ini.
 ##### Contoh Ilustrasi Program
 Menu Awal dan Penambahan Data
@@ -1290,3 +1297,10 @@ public class Main07 {
 ```
 
 ##### Output pada kode program
+
+<img src = "tugas1.png">
+
+<img src = "tugas1.2.png">
+
+<img src = "tugas1.3.png">
+
