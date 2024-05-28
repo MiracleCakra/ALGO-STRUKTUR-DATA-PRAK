@@ -256,20 +256,23 @@ public class BinaryTreeMain {
 
 1. Mengapa dalam binary search tree proses pencarian data bisa lebih efektif dilakukan dibanding binary tree biasa?
 
-    Jawab:
+    Jawab: Dalam binary search tree, proses pencarian data lebih efektif dibandingkan binary tree biasa karena sifat terurut, pembagian ruang pencarian, kompleksitas waktu rata-rata O(log n), dan tidak perlu menelusuri seluruh node. 
 
 2. Untuk apakah di class Node, kegunaan dari atribut left dan right?
 
-    Jawab:
+    Jawab: pada atribut left dan right yang ada dalam class Node berfungsi untuk menunjuk pada anak kiri dan anak kanan dalam Node tersebut
 
-3. a. Untuk apakah kegunaan dari atribut root di dalam class BinaryTree?
+3. a. Untuk apakah kegunaan dari atribut root di dalam class          BinaryTree?
+
+    Jawab: Atribut root di dalam kelas BinaryTree07 digunakan untuk menyimpan referensi (alamat) ke node akar (root) dari pohon biner. Node akar (root) adalah node paling atas dalam struktur pohon biner, dan semua node lainnya berakar dari node ini.
+
    b. Ketika objek tree pertama kali dibuat, apakah nilai dari root?
 
-    Jawab:
+    Jawab: Ketika pada objek tree pertama kali dibuat, nilai pada root bernilai null, yang berarti bahwa pohon tersebut masih kosong dan belum memiliki node apapun.
 
 4. Ketika tree masih kosong, dan akan ditambahkan sebuah node baru, proses apa yang akan terjadi?
 
-    Jawab:
+    Jawab: Ketika tree masih kosong, dan akan ditambahkan sebuah node baru maka yang terjadi adalah node baru tersebut akan menjadi root dari tree. bisa terjadi dikarenakan pada root adalah null, sehingga pada node baru akan diinisialisasi dan ditetapkan sebagai root.
 
 5. Perhatikan method add(), di dalamnya terdapat baris program seperti di bawah ini. Jelaskan
 secara detil untuk apa baris program tersebut?
@@ -284,6 +287,10 @@ secara detil untuk apa baris program tersebut?
         }
     }
     ```
+
+    Jawab: potongan kode program diatas berfungsi untuk menempatkan node baru dengan nilai data pada posisi yang tepat dalam Binary Search Tree, dengan cara membandingkan nilainya dengan nilai node saat ini (current) dan melanjutkan pencarian ke sisi kiri jika data lebih kecil. Ketika ditemukan posisi yang tepat (tidak ada anak di sisi kiri), maka node baru akan dibuat dan dihubungkan sebagai anak di sisi kiri dari node saat ini.
+    Proses ini akan diulang secara rekursif pada subtree kiri (jika data lebih kecil dari node saat ini) atau subtree kanan (jika data lebih besar dari node saat ini) sampai ditemukan posisi yang tepat untuk menempatkan node baru, yaitu semua node di sisi kiri lebih kecil dari node induk, dan semua node di sisi kanan lebih besar dari node induk.
+
 
 ### 13.3 Kegiatan Praktikum 2
 
@@ -341,24 +348,33 @@ public class BinaryTreeArrayMain07{
 
 1. Apakah kegunaan dari atribut data dan idxLast yang ada di class BinaryTreeArray?
 
-    Jawab:
+    Jawab: data adalah array yang menyimpan nilai-nilai node dalam representasi array dari binary tree.
+    idxLast adalah indeks terakhir dalam array data yang memiliki nilai (node terakhir dalam binary tree).
+
+    Kombinasi dari data dan idxLast memungkinkan implementasi binary tree menggunakan representasi array dan melakukan operasi seperti traversal atau manipulasi pada binary tree tersebut dengan efisien.
 
 2. Apakah kegunaan dari method populateData()?
 
-    Jawab:
+    Jawab:  metode populateData() berfungsi untuk menyediakan mekanisme agar nilai-nilai node dalam binary tree yang direpresentasikan dalam bentuk array dapat diinisialisasi atau diisi ke dalam objek BinaryTreeArray07. Metode ini memungkinkan kita untuk memasukkan data dari luar ke dalam objek BinaryTreeArray07 sebelum melakukan operasi lain seperti traversal atau manipulasi pada binary tree tersebut.
 
 3. Apakah kegunaan dari method traverseInOrder()?
 
-    Jawab:
+    Jawab: metode traverseInOrder() berfungsi untuk melakukan traversal in-order pada binary tree yang direpresentasikan dalam bentuk array dengan cara mengunjungi semua node di subtree kiri secara rekursif, kemudian mencetak nilai node saat ini, dan terakhir mengunjungi semua node di subtree kanan secara rekursif.
 
 4. Jika suatu node binary tree disimpan dalam array indeks 2, maka di indeks berapakah posisi
-left child dan rigth child masin-masing?
+left child dan right child masing-masing?
 
-    Jawab:
+    Jawab: Left child pada node yang tersimpan dalam indeks i pada array terletak pada indeks 2*i + 1.
+    Right child dari node yang tersimpan dalam indeks i pada array terletak pada indeks 2*i + 2.
+
+    jika node berada pada indeks 2:
+
+    Left child: 2*2 + 1 = 5
+    Right child: 2*2 + 2 = 6
 
 5. Apa kegunaan statement int idxLast = 6 pada praktikum 2 percobaan nomor 4?
 
-    Jawab:
+    Jawab: kegunaan statement int idxLast = 6, berfungsi untuk menentukan indeks terakhir yang berada pada elemen yang valid pada array data. Dan pada Binary Tree diimplementasikan menggunakan array.
 
 
 ### 13.4 Tugas Praktikum
