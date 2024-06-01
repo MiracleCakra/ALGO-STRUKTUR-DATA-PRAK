@@ -12,20 +12,20 @@ public class BinaryTreeMain {
         bt.add(9);
         bt.add(10);
         bt.add(15);
-        System.out.print("PreOrder Traversal      : ");
+        System.out.print("PreOrder Traversal        : ");
         bt.taversePreOrder(bt.root);
         System.out.println("");
-        System.out.print("inOrder Traversal     : ");
+        System.out.print("inOrder Traversal         : ");
         bt.taverseInOrder(bt.root);
         System.out.println("");
-        System.out.print("PostOrder Traversal   : ");
+        System.out.print("PostOrder Traversal       : ");
         bt.taversePostOrder(bt.root);
         System.out.println("");
-        System.out.println("Find Node : " + bt.find(5));
+        System.out.println("Find Node                 : " + bt.find(5));
         System.out.println("Delete Node 8");
         bt.delete(8);
         System.out.println("");
-        System.out.print("PreOrder Traversal : ");
+        System.out.print("PreOrder Traversal        : ");
         bt.taversePreOrder(bt.root);
         System.out.println("");
     }

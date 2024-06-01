@@ -252,6 +252,10 @@ public class BinaryTreeMain {
 }
 ```
 
+##### Output pada kode program
+
+<img src = 'tugas1.png'>
+
 ### 13.2.2 Pertanyaan Percobaan
 
 1. Mengapa dalam binary search tree proses pencarian data bisa lebih efektif dilakukan dibanding binary tree biasa?
@@ -344,6 +348,10 @@ public class BinaryTreeArrayMain07{
 }
 ```
 
+##### Output pada kode program
+
+<img src = 'tugas2.png'>
+
 ### 13.3.2 Pertanyaan Percobaan
 
 1. Apakah kegunaan dari atribut data dan idxLast yang ada di class BinaryTreeArray?
@@ -383,22 +391,183 @@ Waktu pengerjaan: 90 menit
 
 1. Buat method di dalam class BinaryTree yang akan menambahkan node dengan cara rekursif.
 
-    Jawab:
+    Jawab: 
+
+    ```java
+     void tambahRekursif(Node07 current, int data) { // penambahan pada method tambah secara rekursif
+        if (current == null) { // tugas 1
+            current = new Node07(null, data, null);
+        } else {
+            if (data < current.data) {
+                if (current.left != null) {
+                    tambahRekursif(current.left, data);
+                } else {
+                    current.left = new Node07(null, data, null);
+                }
+            } else if (data > current.data) {
+                if (current.right != null) {
+                    tambahRekursif(current.right, data);
+                } else {
+                    current.right = new Node07(null, data, null);
+                }
+            }
+        }
+    }
+    ```
 
 2. Buat method di dalam class BinaryTree untuk menampilkan nilai paling kecil dan yang paling besar yang ada di dalam tree.
     
     Jawab:
 
+
+    ```java
+    int findMin() { //tugas 2
+        Node07 current = root;
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current.data;
+    }
+
+    int findMax() {
+        Node07 current = root;
+        while (current.right != null) {
+            current = current.right;
+        }
+        return current.data;
+    }
+    ```
+
 3. Buat method di dalam class BinaryTree untuk menampilkan data yang ada di leaf.
 
     Jawab:
 
+    ```java
+     void tampilLeaf(Node07 node) { // tugas 3
+        if (node != null) {
+            if (node.left == null && node.right == null) {
+                System.out.print(" " + node.data);
+            } else {
+                tampilLeaf(node.left);
+                tampilLeaf(node.right);
+            }
+        }
+    }
+    ```
+
 4. Buat method di dalam class BinaryTree untuk menampilkan berapa jumlah leaf yang ada di dalam tree.
 
     Jawab:
+
+
+    ```java
+     int tampilJumlahLeaf(Node07 node) { // tugas 4
+        if (node == null) {
+            return 0;
+        } else if (node.left == null && node.right == null) {
+            System.out.println(" " + node.data);
+            return 1;
+        } else {
+            return tampilJumlahLeaf(node.left) + tampilJumlahLeaf(node.right);
+        }
+    }
+    ```
+
+##### Output pada kode program
+
+<img src = 'tugaslat1.png'>
+
+
 
 5. Modifikasi class BinaryTreeArray, dan tambahkan :
 • method add(int data) untuk memasukan data ke dalam tree
 • method traversePreOrder() dan traversePostOrder()
 
     Jawab:
+
+##### Class pada kode program
+
+```java
+package minggu14.tugaslat;
+
+public class BinaryTreeArray07 {
+    int[] data;
+    int idxLast;
+
+    public BinaryTreeArray07() {
+        data = new int[10];
+        idxLast = -1; // sebagai penunjuk bahwa array kosong saat proses inisialisasi
+    }
+
+    void populateData(int data[], int idxLast) {
+        this.data = data;
+        this.idxLast = idxLast;
+    }
+
+    void traverseInOrder(int idxStart) {
+        if (idxStart <= idxLast) {
+            traverseInOrder(2 * idxStart + 1);
+            System.out.print(data[idxStart] + " ");
+            traverseInOrder(2 * idxStart + 2);
+        }
+    }
+
+    void add(int data) {
+        // cek penuh atau tidak
+        if (idxLast == this.data.length - 1) {
+            System.out.println("The Tree is Full");
+            return;
+        }
+        idxLast++;
+        this.data[idxLast] = data;
+    }
+
+    void traversePreOrder(int idxStart) {
+        if (idxStart <= idxLast) {
+            System.out.print(this.data[idxStart] + " ");
+            traversePreOrder(2 * idxStart + 1);
+            traversePreOrder(2 * idxStart + 2);
+        }
+    }
+
+    void traversePostOrder(int idxStart) {
+        if (idxStart <= idxLast) {
+            traversePostOrder(2 * idxStart + 1);
+            traversePostOrder(2 * idxStart + 2);
+            System.out.print(this.data[idxStart] + " ");
+            }
+        }
+    }
+```
+##### Main pada kode program
+
+
+```java
+package minggu14.tugaslat;
+
+public class BinaryTreeArrayMain07 {
+
+    public static void main(String[] args) {
+        BinaryTreeArray07 bta = new BinaryTreeArray07();
+
+        int[] data = { 6, 4, 8, 3, 5, 7, 9, 0, 0, 0 };
+        int idxLast = 6;
+        bta.populateData(data, idxLast);
+        System.out.print("InOrder Travesal      : ");
+        bta.traverseInOrder(0);
+        System.out.print("\n");
+
+        // implementasi new methods
+        System.out.print("PreOrder Traversal    : ");
+        bta.traversePreOrder(0);
+        System.out.println(" ");
+        System.out.print("PostOrder Traversal   : ");
+        bta.traversePostOrder(0);
+        System.out.println(" ");
+            }
+        }
+```
+
+##### Output pada kode program
+
+<img src = 'tugaslat2.png'>
