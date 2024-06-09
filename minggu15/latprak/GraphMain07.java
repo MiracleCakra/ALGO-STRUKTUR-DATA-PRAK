@@ -1,9 +1,8 @@
-package minggu15.prak1;
+package minggu15.latprak;
 
 import java.util.Scanner;
-
 public class GraphMain07 {
-      public static int menu() {
+    public static int menu() {
         Scanner sc = new Scanner(System.in);
         System.out.println("+------------------------------+");
         System.out.println("|--------- Menu Graph ---------|");
@@ -104,4 +103,3 @@ public class GraphMain07 {
         }
     }
 }
-
